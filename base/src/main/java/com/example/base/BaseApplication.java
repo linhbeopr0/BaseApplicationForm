@@ -38,7 +38,7 @@ public class BaseApplication extends Application {
         return currentProcessName;
     }
 
-    public BaseComponent getmComponent() {
+    public BaseComponent getComponent() {
         return mComponent;
     }
 

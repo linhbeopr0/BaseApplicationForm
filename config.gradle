@@ -17,7 +17,9 @@ ext.versions = [
         retrofit          : '2.0.2',
         okHttp            : '3.2.0',
         realm             : '1.0.0',
-        gson              : '2.6.2'
+        gson              : '2.6.2',
+        materialDialog    : '0.8.5.9@aar',
+        robotoTextView    : '2.5.0'
 ]
 
 ext.libraries = [
@@ -41,4 +43,6 @@ ext.libraries = [
         retrofit                : "com.squareup.retrofit2:retrofit:$versions.retrofit",
         retrofitGsonConverter   : "com.squareup.retrofit2:converter-gson:$versions.retrofit",
         retrofitRxJavaAdapter   : "com.squareup.retrofit2:adapter-rxjava:$versions.retrofit",
+        materialDialog          : "com.afollestad.material-dialogs:core:$versions.materialDialog",
+        robotoTextView          : "com.github.johnkil.android-robototextview:robototextview:$versions.robotoTextView"
 ]

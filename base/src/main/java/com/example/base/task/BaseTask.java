@@ -1,6 +1,6 @@
 package com.example.base.task;
 
-import android.database.Observable;
+import rx.Observable;
 
 /**
  * Created by ngoclinh.truong on 6/14/16.
