@@ -43,10 +43,10 @@ public class HomeActivity extends BaseActivity {
         LogUtils.d("remove a record!");
     }
 
-
     @Click(R.id.update_record)
     void update() {
         LogUtils.d("update a record!");
     }
+
 
 }

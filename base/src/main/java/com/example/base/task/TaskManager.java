@@ -1,7 +1,6 @@
 package com.example.base.task;
 
 
-import com.example.base.TaskScheduler;
 import com.example.utils.LogUtils;
 
 import javax.inject.Inject;

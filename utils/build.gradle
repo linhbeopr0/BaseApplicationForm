@@ -25,6 +25,7 @@ android {
 dependencies {
     compile libraries.supportDesign
     compile libraries.robotoTextView
+    compile libraries.wire
     compile (libraries.materialDialog) {
         transitive = true
     }

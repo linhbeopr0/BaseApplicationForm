@@ -9,6 +9,7 @@ ext.versions = [
         supportLibs       : '23.4.0',
 
         // 3rd
+        wire              : '2.1.2',
         dagger            : '2.4',
         javaxAnnotations  : '1.2',
         androidAnnotations: '4.0.0',
@@ -31,6 +32,7 @@ ext.libraries = [
         supportRecyclerView     : "com.android.support:recyclerview-v7:$versions.supportLibs",
 
         // 3rd
+        wire                    : "com.squareup.wire:wire-runtime:$versions.wire",
         dagger                  : "com.google.dagger:dagger:$versions.dagger",
         daggerCompiler          : "com.google.dagger:dagger-compiler:$versions.dagger",
         javaxAnnotations        : "javax.annotation:javax.annotation-api:$versions.javaxAnnotations",

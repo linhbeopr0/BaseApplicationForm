@@ -11,9 +11,9 @@ import javax.inject.Inject;
 public class TaskResource {
 
     @Inject
-    ResourceManager resourceManager;
+    public ResourceManager resourceManager;
 
     @Inject
-    DbManager dbManager;
+    public DbManager dbManager;
 
 }

@@ -2,10 +2,11 @@ package com.example.base.db;
 
 import android.content.Context;
 
-import com.example.base.TaskScheduler;
+import com.example.base.task.TaskScheduler;
 import com.example.base.db.notify.UpdateNotify;
 import com.example.databases.Database;
 import com.example.databases.DbTask;
+import com.example.databases.schema.UserDatabase;
 import com.example.utils.ClassUtil;
 import com.example.utils.LogUtils;
 
@@ -29,7 +30,7 @@ public class DbManager {
     private final Context mContext;
     private final AtomicInteger mRefCount;
     private final Subject<UpdateNotify, UpdateNotify> mUpdateNotify;
-    private Database mDb;
+    private volatile UserDatabase mDb;
 
     public DbManager(Context context) {
         mContext = context.getApplicationContext();
@@ -39,6 +40,22 @@ public class DbManager {
 
     public Observable<UpdateNotify> dbNotifies() {
         return mUpdateNotify.observeOn(TaskScheduler.COMPUTE);
+    }
+
+    public UserDatabase db() {
+        if (mDb == null) {
+            throw new  IllegalStateException("db was not initialized yet...");
+        }
+
+        return mDb;
+    }
+
+    public synchronized void initDb(long id) {
+        if (mDb != null && mDb.getmUid() == id) {
+            return;
+        }
+
+        mDb = new UserDatabase(mContext, id);
     }
 
     private <T> Observable<T> execute(final Database database, final DbTask<T> task, Scheduler scheduler) {
@@ -51,7 +68,7 @@ public class DbManager {
             @Override
             public void call(Subscriber<? super T> subscriber) {
                 if (subscriber.isUnsubscribed()) {
-                    return ;
+                    return;
                 }
 
                 final Realm realm = database.instance();
@@ -106,6 +123,7 @@ public class DbManager {
     /**
      * Run the update immediately in current thread and return whatever returned by the update. This is mainly used in
      * notify processors.
+     *
      * @param update
      * @param <T>
      * @return
@@ -114,4 +132,18 @@ public class DbManager {
         update.setNotifySubject(mUpdateNotify);
         return mDb.run(update);
     }
+
+
+    /**
+     * Return an observable that queries user database upon subscribed. Note that if the emitted object
+     * is a live realm object, it'll be accessible until unsubscribed.
+     *
+     * @param query
+     * @param <T>
+     * @return
+     */
+    public <T> Observable<T> query(Query<T> query) {
+        return execute(mDb, query, TaskScheduler.DB_READ);
+    }
+
 }
