@@ -11,6 +11,8 @@ public class User extends RealmObject {
 
     public static final String COL_UID = "uid";
 
+    public User(){}
+
     public User(long uid) {
         this.uid = uid;
     }
