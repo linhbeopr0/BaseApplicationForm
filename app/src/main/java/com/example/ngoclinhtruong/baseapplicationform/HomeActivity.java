@@ -11,6 +11,7 @@ import com.example.databases.schema.User;
 import com.example.ngoclinhtruong.baseapplicationform.task.AddRecordTask;
 import com.example.ngoclinhtruong.baseapplicationform.task.DeleteRecordTask;
 import com.example.ngoclinhtruong.baseapplicationform.task.UpdateRecordTask;
+import com.example.ngoclinhtruong.baseapplicationform.test.TabActivity_;
 import com.example.utils.LogUtils;
 
 import org.androidannotations.annotations.Click;
@@ -36,6 +37,8 @@ public class HomeActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_activity);
+
+        TabActivity_.intent(this).start();
     }
 
     @Click(R.id.add_record)
