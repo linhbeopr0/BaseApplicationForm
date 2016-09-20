@@ -17,15 +17,10 @@ public class UpdateRecordTask extends BaseTask<User> {
 
     private String mName;
     private long mId;
-    private UpdateRecordTask() {
-        mName = "";
-        mId = 0;
-    }
 
-    public void UpdateRecordTask(String name, long id) {
-        UpdateRecordTask updateRecordTask = new UpdateRecordTask();
-        updateRecordTask.mName = name;
-        updateRecordTask.mId = id;
+    public UpdateRecordTask(String name, long id) {
+        mName = name;
+        mId = id;
     }
 
     @Override
